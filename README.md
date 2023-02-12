@@ -6,7 +6,7 @@ This is the repository contains the Unity project for the University of Idaho's 
 
  ![Unity 2021.3.9f1](https://img.shields.io/badge/unity-2023.1.9f1-black.svg?style=flat&logo=unity)
 
-##The Game  
+## The Game  
 
 TO BE NAMED is a chaotic first person Roguelike
 
