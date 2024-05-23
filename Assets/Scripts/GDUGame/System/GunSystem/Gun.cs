@@ -1,5 +1,6 @@
 using QPFramework;
 using System.Numerics;
+using UnityEngine;
 
 namespace GDUGame {
    /// <summary>
@@ -23,6 +24,9 @@ namespace GDUGame {
       private GunData gunData;
 
       private int capacity;
+
+      [SerializeField]
+      private float fireRate;
       private float coolDownTimer;
 
       public string Name;
@@ -56,7 +60,7 @@ namespace GDUGame {
 
             State.Value = GunState.Idle;
 
-            coolDownTimer = 0.5f; // Cool Down time in seconds
+            coolDownTimer = fireRate; // Cool Down time in seconds
          }
       }
 
