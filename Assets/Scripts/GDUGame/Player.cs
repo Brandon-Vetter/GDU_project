@@ -171,7 +171,7 @@ namespace GDUGame {
          pv.yaw += mouseMovement.x;
          pv.pitch += mouseMovement.y;
 
-         vector = new Vector3(Mathf.Clamp(vector.x, -30, 60), vector.y, vector.z);
+         vector = new Vector3(Mathf.Clamp(vector.x, -60, 90), vector.y, vector.z);
 
          head.transform.eulerAngles = new Vector3(vector.x, vector.y, vector.z);
          transform.eulerAngles = new Vector3(0f, vector.y, 0f);
