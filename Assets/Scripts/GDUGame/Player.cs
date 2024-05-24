@@ -13,7 +13,11 @@ namespace GDUGame {
       private GameObject head;
       private GameObject feet;
 
-      private Gun gun;
+      private GameObject gunHolder;
+      [SerializeField]
+      public GameObject[] guns = new GameObject[4];
+      private GameObject currGun;
+      public Gun gun;
 
       [SerializeField]
       [Tooltip("Record Player velocity (only used for vertical speed now")]
@@ -116,11 +120,19 @@ namespace GDUGame {
          Cursor.lockState = CursorLockMode.Locked;
 
          cc = GetComponent<CharacterController>();
-
+      
          head = transform.GetChild(0).gameObject;
          feet = transform.GetChild(1).gameObject;
 
-         gun = transform.GetComponentInChildren<Gun>();
+         gunHolder = head.transform.GetChild(1).gameObject;
+
+         for (int i = 0; i < 4; i++)
+         {
+             guns[i] = gunHolder.transform.GetChild(i).gameObject;
+         }
+
+         currGun = guns[0];
+         gun =currGun.GetComponent<Gun>();
 
          velocity = Vector3.zero;
          pv.set(head.transform.localEulerAngles);
@@ -149,7 +161,27 @@ namespace GDUGame {
             pickUp();
          }
 
-         underGravity();
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                switchGun(0);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                switchGun(1);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                switchGun(2);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                switchGun(3);
+            }
+
+            underGravity();
 
          lookAt(pv.get());
 
@@ -359,5 +391,13 @@ namespace GDUGame {
       private void coolDown(){
          gun.coolDown(Time.deltaTime);
       }
+
+
+    private void switchGun(int gunNumber) {
+        currGun.SetActive(false);
+        currGun = guns[gunNumber];
+        currGun.SetActive(true);
+        gun = currGun.GetComponent<Gun>();
+        }
    }
 }
